@@ -1,0 +1,15 @@
+name: 03-Workflow Call
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/Jobs-outputs.yml
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Display Version
+        run:  |
+          echo "==================="
+          echo "version: ${{ needs.build.outputs.app_version }} "
+          echo "==================="
