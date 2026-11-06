@@ -1,0 +1,13 @@
+name: 01-Steps-Outputs
+on: workflow_dispatch
+jobs:
+  test-steps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Information about Output
+        id: app
+        run: |
+          echo "APP_VERSION=V1.2.3" >> $GITHUB_OUTPUTS
+      - name: Displaying the Information
+        run: |
+         echo " Version: ${{ steps.app.outputs.APP_VERSION }}
