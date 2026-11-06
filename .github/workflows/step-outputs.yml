@@ -10,4 +10,4 @@ jobs:
           echo "APP_VERSION=V1.2.3" >> $GITHUB_OUTPUT
       - name: Displaying the Information
         run: |
-         echo " Version: ${{ steps.app.outputs.APP_VERSION }}
+         echo " Version: ${{ steps.app.outputs.APP_VERSION }} "
