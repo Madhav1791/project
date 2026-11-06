@@ -1,5 +1,10 @@
 name: 02-Jobs Outputs
-on: workflow_dispatch
+on:
+  workflow_call:
+    outputs:
+      app_version:
+        description: App Version
+        value: ${{ jobs.test-job.outputs.app_version }}
 jobs:
   test-job:
     runs-on: ubuntu-latest
@@ -14,13 +19,4 @@ jobs:
     outputs:
       app_version: ${{ steps.data.outputs.version }}
 
-  Deploy-job:
-    needs: test-job
-    runs-on: ubuntu-latest
-    steps:
-      - name: Display version
-        run: |
-          echo "======================="
-          echo "APP VERSION: ${{ needs.test-job.outputs.app_version }}"
-          echo "======================="
     
