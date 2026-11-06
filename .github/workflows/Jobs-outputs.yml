@@ -1,0 +1,26 @@
+name: 02-Jobs Outputs
+on: workflow_dispatch
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Information
+        id: data
+        run: |
+          echo "========================"
+          echo "version=2.4" >> $GITHUB_OUTPUT
+          echo "========================"
+
+    outputs:
+      app_version: ${{ steps.data.outputs.version }}
+
+  Deploy-job:
+    needs: test-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display version
+        run: |
+          echo "======================="
+          echo "APP VERSION: ${{ needs.test-job.outputs.app_version }}"
+          echo "======================="
+    
